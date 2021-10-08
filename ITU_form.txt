@@ -1,0 +1,58 @@
+### INFO ###
+The format for the submission must be a zipfile including:
+ - This filled out form
+ - Full source code for end-to-end reproducibility
+ - Dockerfile-based environment setup
+   (we suggest to base your submission on this sandbox repository)
+ - Exported .onnx model with batch size = 1
+ - Trained .pth checkpoint
+
+### FILL IN ###
+# Overall test accuracy reached:
+-> 0.562543
+
+# Inference cost score reached:
+-> 0.042467
+
+# Complete output dictionary printed by the inference_cost() function:
+-> {
+  "discount_sparsity": true,
+  "mem_o_FLOAT32": 130328.0,
+  "mem_w_SCALEDINT4": 17018.0,
+  "op_mac_SCALEDINT4_SCALEDINT4": 198656.0,
+  "op_mac_SCALEDUINT4_SCALEDINT4": 1328630.0,
+  "total_bops": 24436576.0,
+  "total_mem_o_bits": 4170496.0,
+  "total_mem_w_bits": 68072.0,
+  "unsupported": "set()"
+}
+
+# Path to .onnx model within this zipfile:
+-> model_export.onnx
+
+# Path to .pth checkpoint within this zipfile:
+-> bestnet10.pth
+
+# Link to GitHub repository containing your code 
+# (to be made public after submission deadline):
+-> https://github.com/JakobKrzyston/ITU-ML5G
+
+# Instructions for reproduction:
+-> Use the scripts provided by Xilinx in the sandbox environment
+(https://github.com/Xilinx/brevitas-radioml-challenge-21), but replace the Dockerfile there with 
+the minimally modified one included in this zip file. Then set the `DATASET_DIR` and `DOCKER_GPUS`
+environment variables correctly, then call the sandbox docker launcher script with bash as the argument,
+`run-docker.sh bash`.
+Inside this container shell, run the included `train_and_evaluate.py` script in python by calling
+`python train_and_evaluate.py`. This will train the network and dump the accuracy and inference cost outputs
+to the screen (along with lots of other things).
+If you want to just score the model for accuracy and inference cost without training, simply call `python score.py`,
+where the `score.py` file is also included in this zip file.
+In both files, you can reduce batch_size to address GPU OOM errors, and set the dataloader `load_into_ram` parameter to
+False if you get system RAM errors; that parameter lets the ~20 GB dataset go into RAM for faster training.
+
+# Further comments:
+-> This is a 4 bit version of the provided baseline VGG style network that has been iterative magnitude
+pruned using learning rate schedule rewinding according to ideas from Alex Renda. His method for pruning
+fits in a tweet: (https://twitter.com/alex_renda_/status/1237393727389184007?s=20). We prune 20% of the weights
+of a network as soon as the 0.56 accuracy threshold is reached on the test set, and then begin retraining.
