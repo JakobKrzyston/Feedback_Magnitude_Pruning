@@ -6,4 +6,4 @@ The goal of the competition was to created the fastest* and most efficient* deep
 
 ## Notes
 - The code used in this repo stems from the provided repo: https://github.com/Xilinx/brevitas-radioml-challenge-21
-- This repo was designed to be easily replicated on their docker. 
+- Please find ITU_form.txt to see further details regarding performance, instructions to run the code, etc.
