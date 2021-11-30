@@ -44,7 +44,7 @@ To run FMP, with our best (to date) results, please run the following (**be sure
 ```
 python3 feedback_magnitude_pruning.py
 ```
-The parameters (bits, conv filters, dense nodes, sparsity and sparsity decay parameters, are in the top of the .py file.
+The parameters (bits, conv filters, dense nodes, sparsity and sparsity decay parameters) are in the top of the .py file.
 
 
 ### Notes
