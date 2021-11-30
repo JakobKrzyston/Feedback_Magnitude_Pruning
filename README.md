@@ -40,11 +40,12 @@ In this work we used:
 **Please note there is a threshold to *p* in order to limit runtime**
 
 ## Run the code ##
-To run FMP, with our best (to date) results, please run the following:
+To run FMP, with our best (to date) results, please run the following (**be sure to input the path to where the data is stored**):
 ```
 python3 feedback_magnitude_pruning.py
 ```
 The parameters (bits, conv filters, dense nodes, sparsity and sparsity decay parameters, are in the top of the .py file.
+
 
 ### Notes
 - The code used in this repo stems from the provided repo: https://github.com/Xilinx/brevitas-radioml-challenge-21
